@@ -1,0 +1,57 @@
+# Tinyshot Flatpak manifest.
+#
+# The submission to Flathub keeps everything below except the application source: there the
+# `type: dir` source is replaced by a git source pinned to the release tag, i.e.
+#
+#   sources:
+#     - type: git
+#       url: https://github.com/pawslaves/tinyshot
+#       tag: v1.0.0
+#       commit: <commit the v1.0.0 tag points at>
+#
+# The `type: dir` source here points at the checkout this file lives in (packaging/flatpak/),
+# so `flatpak run org.flatpak.Builder ... packaging/flatpak/io.github.pawslaves.Tinyshot.yml`
+# builds the working tree.
+
+app-id: io.github.pawslaves.Tinyshot
+runtime: org.kde.Platform
+runtime-version: '6.11'
+sdk: org.kde.Sdk
+command: tinyshot
+finish-args:
+  # Qt widgets only, no OpenGL: a Wayland session with an X11 fallback for X11 sessions.
+  # The X11 socket requires the IPC namespace (--share=ipc).
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --share=ipc
+  # Uploads to prnt.sc (opt-in in the options, off by default) and the sign-in check.
+  - --share=network
+  # The tray icon registers a StatusNotifierItem with the desktop's watcher; the same
+  # QSystemTrayIcon reports "saved" and "uploaded" through org.freedesktop.Notifications.
+  - --talk-name=org.kde.StatusNotifierWatcher
+  - --talk-name=org.freedesktop.Notifications
+  # Screenshots are saved to ~/Pictures/Tinyshot by default. Only that directory is exported,
+  # not all of xdg-pictures; Save As uses the file chooser portal, which needs no permission.
+  - --filesystem=xdg-pictures/Tinyshot:create
+  # QPrintDialog/QPrinter talk to CUPS over its socket.
+  - --socket=cups
+modules:
+  - name: tinyshot
+    buildsystem: cmake-ninja
+    builddir: true
+    config-opts:
+      - -DCMAKE_BUILD_TYPE=RelWithDebInfo
+      # The unit tests (tests/) run with ctest on the host and in CI; the Flatpak ships the
+      # application only.
+      - -DBUILD_TESTING=OFF
+    sources:
+      - type: dir
+        path: ../..
+        # flatpak-builder copies the whole tree; keep the local build trees and the git
+        # directory out of it.
+        skip:
+          - build
+          - build-repo
+          - build-flatpak
+          - .flatpak-builder
+          - .git

@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    # Branch pushes only; v* tags are the release workflow's business.
+    branches: ["**"]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    name: Build and test (Debian trixie)
+    runs-on: ubuntu-24.04
+    container: debian:trixie
+    steps:
+      # The image ships no git, and actions/checkout runs inside this container, so the
+      # dependencies are installed before the checkout.  dpkg-dev and file are not needed
+      # here; only `cpack -G DEB` wants them, and that runs in the release workflow.
+      - name: Install git and the build dependencies
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            git ca-certificates \
+            g++ cmake ninja-build qt6-base-dev qt6-tools-dev qt6-svg-plugins \
+            libx11-dev libxfixes-dev
+
+      - uses: actions/checkout@v7.0.1
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -G Ninja
+          -DCMAKE_BUILD_TYPE=RelWithDebInfo
+          -DBUILD_TESTING=ON
+          -DCMAKE_COMPILE_WARNING_AS_ERROR=ON
+
+      - name: Build
+        run: cmake --build build --parallel
+
+      - name: Test
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: ctest --test-dir build --output-on-failure

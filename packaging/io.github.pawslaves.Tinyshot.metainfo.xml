@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2026 pawslaves -->
+<component type="desktop-application">
+  <id>io.github.pawslaves.Tinyshot</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <name>Tinyshot</name>
+  <summary>A tiny, Lightshot-style screenshot tool</summary>
+  <developer id="io.github.pawslaves">
+    <name>pawslaves</name>
+  </developer>
+  <description>
+    <p>
+      Tinyshot is a screenshot tool with a full-screen selection overlay. The
+      selection can be annotated with pen, line, arrow, rectangle, marker and
+      text tools, then copied, saved or printed. Global hotkeys take a
+      screenshot or save the full screen in one step.
+    </p>
+    <p>
+      Uploads to prnt.sc, the social share buttons and the prntscr.com account
+      are off by default and can be enabled in the options.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.pawslaves.Tinyshot.desktop</launchable>
+  <url type="homepage">https://github.com/pawslaves/tinyshot</url>
+  <url type="bugtracker">https://github.com/pawslaves/tinyshot/issues</url>
+  <url type="vcs-browser">https://github.com/pawslaves/tinyshot</url>
+  <branding>
+    <color type="primary" scheme_preference="light">#fdfcfc</color>
+    <color type="primary" scheme_preference="dark">#201d1d</color>
+  </branding>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/pawslaves/tinyshot/v1.0.0/docs/screenshots/about.png</image>
+      <caption>The about dialog with the version and the project links.</caption>
+    </screenshot>
+    <!-- The screenshot of the capture overlay follows here. -->
+  </screenshots>
+  <categories>
+    <category>Graphics</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>screenshot</keyword>
+    <keyword>capture</keyword>
+    <keyword>annotate</keyword>
+    <keyword>share</keyword>
+  </keywords>
+  <provides>
+    <binary>tinyshot</binary>
+  </provides>
+  <releases>
+    <release version="1.0.0" date="2026-09-30">
+      <description>
+        <p>First release.</p>
+        <ul>
+          <li>Full-screen selection overlay with pen, line, arrow, rectangle, marker and text tools</li>
+          <li>Copy, save and print the annotated screenshot</li>
+          <li>Global hotkeys for capture, instant save and instant upload</li>
+          <li>Optional prnt.sc uploads with a link in the clipboard</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <content_rating type="oars-1.1">
+    <!-- Uploads, the share buttons and the account use the prnt.sc / prntscr.com services. -->
+    <content_attribute id="social-info">mild</content_attribute>
+  </content_rating>
+</component>

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Tinyshot
+GenericName=Screenshot Tool
+Comment=Take a screenshot, annotate it and share the link
+Exec=tinyshot
+Icon=io.github.pawslaves.Tinyshot
+Terminal=false
+Categories=Graphics;Utility;
+Keywords=screenshot;capture;annotate;share;
+StartupNotify=false

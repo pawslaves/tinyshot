@@ -1,0 +1,27 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/icons">
+    <file alias="io.github.pawslaves.Tinyshot.svg">icons/io.github.pawslaves.Tinyshot.svg</file>
+    <file alias="io.github.pawslaves.Tinyshot-symbolic.svg">icons/io.github.pawslaves.Tinyshot-symbolic.svg</file>
+  </qresource>
+  <qresource prefix="/toolbar">
+    <file alias="arrow.svg">toolbar/arrow.svg</file>
+    <file alias="cancel.svg">toolbar/cancel.svg</file>
+    <file alias="copy.svg">toolbar/copy.svg</file>
+    <file alias="facebook.svg">toolbar/facebook.svg</file>
+    <file alias="google.svg">toolbar/google.svg</file>
+    <file alias="line.svg">toolbar/line.svg</file>
+    <file alias="marker.svg">toolbar/marker.svg</file>
+    <file alias="pen.svg">toolbar/pen.svg</file>
+    <file alias="pinterest.svg">toolbar/pinterest.svg</file>
+    <file alias="print.svg">toolbar/print.svg</file>
+    <file alias="rect.svg">toolbar/rect.svg</file>
+    <file alias="save.svg">toolbar/save.svg</file>
+    <file alias="share.svg">toolbar/share.svg</file>
+    <file alias="text.svg">toolbar/text.svg</file>
+    <file alias="twitter.svg">toolbar/twitter.svg</file>
+    <file alias="undo.svg">toolbar/undo.svg</file>
+    <file alias="upload.svg">toolbar/upload.svg</file>
+    <file alias="vk.svg">toolbar/vk.svg</file>
+  </qresource>
+</RCC>

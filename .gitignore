@@ -1,0 +1,16 @@
+# Build trees
+build/
+build-*/
+
+# Flatpak builds
+.flatpak-builder/
+build-repo/
+build-flatpak/
+*.flatpak
+
+# Editor junk
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
